@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Catalog readiness tracker concept and working plan for the LEXA Sport product catalog.">
+<title>LEXA catalog readiness - proposal by Josinaldo</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="head">
+      <h1>LEXA catalog readiness</h1>
+      <p>Working proposal by Josinaldo</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Proposal sections">
+      <button role="tab" id="t-tracker" aria-controls="tracker" aria-selected="true" data-page="tracker">Tracker</button>
+      <button role="tab" id="t-plan" aria-controls="plan" aria-selected="false" data-page="plan">How I'd run it</button>
+      <button role="tab" id="t-audit" aria-controls="audit" aria-selected="false" data-page="audit">First look at your site</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- TRACKER -->
+  <section id="tracker" role="tabpanel" aria-labelledby="t-tracker">
+    <p class="intro">A working version of the master tracker I'd build first. Every SKU, every missing piece, and who it's waiting on, in one place. The SKUs are samples built from the sports and fabrics on your site, not your real catalog.</p>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="layout">
+      <div class="tablecol">
+        <div class="toolbar">
+          <input type="search" id="q" placeholder="Search SKU or name" aria-label="Search SKU or name">
+          <select id="fSport" aria-label="Filter by sport"><option value="">All sports</option></select>
+          <select id="fShow" aria-label="Filter by status">
+            <option value="">All SKUs</option>
+            <option value="notready">Not ready</option>
+            <option value="ready">Ready to publish</option>
+            <option value="live">Live</option>
+            <option value="cad">Missing CAD</option>
+            <option value="size">Missing size chart</option>
+            <option value="img">Missing images</option>
+          </select>
+          <button class="btn" id="export">Export Shopify CSV</button>
+        </div>
+        <p class="hint">Click any status to move it forward: Missing, Requested, In progress, Done. A SKU is ready only when all five are done.</p>
+        <div class="tw">
+          <table class="grid">
+            <thead><tr>
+              <th>Product</th><th>Info</th><th>Images</th><th>CAD</th><th>Size chart</th><th>Factory check</th><th>State</th>
+            </tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="empty" hidden>No SKUs match these filters. Clear the search or pick a different filter.</p>
+      </div>
+
+      <aside class="side">
+        <div class="box">
+          <h2>Follow-ups</h2>
+          <p class="sub">Grouped by who each item is waiting on. Requests older than 3 days are due for a nudge.</p>
+          <div id="follow"></div>
+        </div>
+        <div class="box">
+          <h2>Naming check</h2>
+          <p class="sub">Standard: Sport, garment, then fabric. For example, Soccer Jersey - Cool Dry.</p>
+          <div id="naming"></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section id="plan" class="page" role="tabpanel" aria-labelledby="t-plan" hidden>
+    <h2 class="ph">How I'd run it</h2>
+    <p class="lead">The goal is simple: nothing lives in someone's head or inbox. Every SKU has a row, every gap has an owner, and every owner hears from me until it's closed.</p>
+
+    <ol class="steps">
+      <li><b>Audit and build the master tracker</b><span>Pull every product from Shopify and the catalog portal into one Google Sheet. Mark what's missing for each SKU: info, images, CAD, size chart, factory check. You get a gap report at the end of week one.</span></li>
+      <li><b>Agree the standards once</b><span>Product naming, categories, image specs, and file names, signed off by you before anything is uploaded. That stops rework later.</span></li>
+      <li><b>Run three tracks in parallel</b><span>The CAD designer works through a prioritized queue, factories confirm specs and size charts, and I upload finished SKUs to Shopify in batches.</span></li>
+      <li><b>Test as a customer</b><span>Browse by sport, open every product, check sizes, images, and links on phone and desktop. Anything wrong goes back on the tracker.</span></li>
+      <li><b>Launch, then keep it clean</b><span>A short checklist for adding new products, so the catalog stays complete after launch.</span></li>
+    </ol>
+
+    <div class="cols">
+      <div>
+        <h3>Where each thing lives</h3>
+        <table class="plain">
+          <tbody>
+            <tr><td>Google Sheets</td><td>The master tracker, one row per SKU. The single source of truth.</td></tr>
+            <tr><td>Zoho</td><td>Tasks and follow-ups with the designer and factories, with dates.</td></tr>
+            <tr><td>Shopify</td><td>Only finished, checked products. Size charts and CAD attached per product.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>File naming</h3>
+        <p class="sub">One pattern for every asset, so any file can be traced back to its SKU.</p>
+        <table class="plain">
+          <tbody>
+            <tr><td>SOC-JRS-CD-01_front.jpg</td><td>Product photo</td></tr>
+            <tr><td>SOC-JRS-CD-01_cad.pdf</td><td>CAD drawing</td></tr>
+            <tr><td>SOC-JRS-CD-01_size.pdf</td><td>Size chart</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h3>How you'll hear from me</h3>
+        <p>A short written update every day: what closed, what's blocked, and who it's waiting on. Calls whenever you want them. I'm flexible on hours and can meet during Texas business time.</p>
+      </div>
+      <div>
+        <h3>After the catalog</h3>
+        <p>I'm a software engineer, so the repetitive parts get automated as we go: sheet checks that flag gaps automatically, bulk Shopify updates, and later the Replit, inventory, and AI tools you mentioned.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT -->
+  <section id="audit" class="page" role="tabpanel" aria-labelledby="t-audit" hidden>
+    <h2 class="ph">First look at your site</h2>
+    <p class="lead">A few things I noticed on your public Product Details page. Small, but they're exactly the kind of detail this project is about.</p>
+    <div class="finds">
+      <div class="find">
+        <h3>One fabric, three names</h3>
+        <p>The to90 fabric appears as "to90" in the heading, "T090 Fabrix" in the image description, and "0_TO90" in the file name. Customers searching, and your own team, won't always know these are the same thing.</p>
+        <p class="fix">Fix: one official name per fabric, used everywhere.</p>
+      </div>
+      <div class="find">
+        <h3>Capitalization varies</h3>
+        <p>"Butterfly mesh" sits next to "Recycled Cool Dry" and "Cool Dry". A small thing, but it's what makes a catalog look finished or unfinished.</p>
+        <p class="fix">Fix: a naming rule applied in one pass.</p>
+      </div>
+      <div class="find">
+        <h3>Images without descriptions</h3>
+        <p>Several logo and enhancement images, like the patch and embroidery photos, have no alt text. That affects accessibility and how search engines read the page.</p>
+        <p class="fix">Fix: a short description for every image during upload.</p>
+      </div>
+    </div>
+    <p class="note">From a quick look at public pages only. The full audit starts with your actual catalog data.</p>
+
+    <div class="q">
+      <p>One question to start: how many SKUs are in scope right now, and roughly how many already have a CAD drawing?</p>
+      <p class="sub">That tells me how big the designer's queue is and how to split the first two weeks.</p>
+    </div>
+  </section>
+</main>
+
+<div id="drawer"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<footer class="wrap">Prepared by Josinaldo for your Upwork post.</footer>
+<script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "lexa-catalog-proposal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catalog readiness tracker concept and plan for LEXA Sport (static, Vercel-ready).",
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "deploy": "npx --yes vercel --prod"
+  }
+}
